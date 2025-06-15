@@ -1,0 +1,17 @@
+@use './colors.scss' as *;
+@use './variables.scss' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: $body-font-family;
+  background-color: $body-background;
+}
+
+#app {
+  color: $primary;
+}
+
+.v-btn {
+  text-transform: capitalize;
+}

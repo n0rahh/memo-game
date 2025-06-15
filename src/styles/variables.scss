@@ -1,0 +1,15 @@
+@use 'sass:map';
+@use 'sass:string';
+
+$body-font-family: 'Poppins';
+$title-font: 'Poppins';
+$spacer: 4px !default;
+$i: string.unquote('!important');
+
+$grid-breakpoints: (
+  'xs': 0,
+  'sm': 575px,
+  'md': 767px,
+  'lg': 991px - 24px,
+  'xl': 1199px - 24px,
+);
