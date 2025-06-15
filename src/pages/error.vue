@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col>
+      <v-col cols="12">
         <h1>Error</h1>
         <p>Something went wrong. Please try again later.</p>
       </v-col>
@@ -9,5 +9,4 @@
   </v-container>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
