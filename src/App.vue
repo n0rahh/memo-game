@@ -1,16 +1,20 @@
-<script setup lang="ts">
-</script>
-
 <template>
-  <v-container>
-    <v-row>
-      <v-col>
-        <span>App loaded</span>
-      </v-col>
-    </v-row>
-  </v-container>
+  <v-app>
+    <v-main class="pa-0">
+      <router-view
+        :key="$route.fullPath"
+        v-slot="{ Component }"
+      >
+        <transition
+          name="scroll-x-reverse-transition"
+          mode="out-in"
+        >
+          <component
+            v-if="Component"
+            :is="Component"
+          />
+        </transition>
+      </router-view>
+    </v-main>
+  </v-app>
 </template>
-
-<style scoped lang="scss">
-
-</style>

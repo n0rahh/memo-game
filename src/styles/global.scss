@@ -5,10 +5,10 @@
 
 body {
   font-family: $body-font-family;
-  background-color: $body-background;
 }
 
-#app {
+.v-main {
+  background-color: $body-background;
   color: $primary;
 }
 

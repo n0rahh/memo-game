@@ -4,10 +4,15 @@ import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+import VueRouter from 'unplugin-vue-router/vite'
 
 export default defineConfig({
   plugins: [
     VueDevTools(),
+    VueRouter({
+      routesFolder: 'src/pages',
+      dts: 'src/typed-router.d.ts',
+    }),
     Vue({ template: { transformAssetUrls } }),
     Vuetify(),
   ],
