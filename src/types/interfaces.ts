@@ -11,4 +11,5 @@ export interface GameCard {
   url: string
   flipped: boolean
   value: string | number
+  guessed: boolean
 }

@@ -50,26 +50,49 @@ import cardCat5 from '@/assets/game/cards/cat-5.jpg'
 import cardCat6 from '@/assets/game/cards/cat-6.jpg'
 
 const cards = ref<GameCard[]>([
-  { value: 'cat-1', flipped: false, url: cardCat1 },
-  { value: 'cat-2', flipped: false, url: cardCat2 },
-  { value: 'cat-3', flipped: false, url: cardCat3 },
-  { value: 'cat-4', flipped: false, url: cardCat4 },
-  { value: 'cat-5', flipped: false, url: cardCat5 },
-  { value: 'cat-6', flipped: false, url: cardCat6 },
-  { value: 'cat-1', flipped: false, url: cardCat1 },
-  { value: 'cat-2', flipped: false, url: cardCat2 },
-  { value: 'cat-3', flipped: false, url: cardCat3 },
-  { value: 'cat-4', flipped: false, url: cardCat4 },
-  { value: 'cat-5', flipped: false, url: cardCat5 },
-  { value: 'cat-6', flipped: false, url: cardCat6 },
+  { value: 'cat-1', flipped: false, url: cardCat1, guessed: false },
+  { value: 'cat-2', flipped: false, url: cardCat2, guessed: false },
+  { value: 'cat-3', flipped: false, url: cardCat3, guessed: false },
+  { value: 'cat-4', flipped: false, url: cardCat4, guessed: false },
+  { value: 'cat-5', flipped: false, url: cardCat5, guessed: false },
+  { value: 'cat-6', flipped: false, url: cardCat6, guessed: false },
+  { value: 'cat-1', flipped: false, url: cardCat1, guessed: false },
+  { value: 'cat-2', flipped: false, url: cardCat2, guessed: false },
+  { value: 'cat-3', flipped: false, url: cardCat3, guessed: false },
+  { value: 'cat-4', flipped: false, url: cardCat4, guessed: false },
+  { value: 'cat-5', flipped: false, url: cardCat5, guessed: false },
+  { value: 'cat-6', flipped: false, url: cardCat6, guessed: false },
 ])
+
+const cardPool = ref<GameCard[]>([])
 
 const shuffledCards = (): GameCard[] => {
   return [...cards.value].sort(() => Math.random() - 0.5)
 }
 
 const flipCard = (card: GameCard) => {
+  if (cardPool.value.length === 2 || card.flipped) return
+
   card.flipped = !card.flipped
+  cardPool.value.push(card)
+
+  if (cardPool.value.length === 2) {
+    setTimeout(() => {
+      if (cardPool.value[0].value !== cardPool.value[1].value) {
+        cardPool.value.forEach((c) => (c.flipped = false))
+      } else {
+        cardPool.value.forEach((c) => (c.guessed = true))
+      }
+      cardPool.value = []
+
+      if (cards.value.every((c) => c.guessed)) {
+        alert('Congratulations! You found all pairs!')
+        cards.value = shuffledCards()
+        cards.value.forEach((c) => (c.flipped = false))
+        cards.value.forEach((c) => (c.guessed = false))
+      }
+    }, 700)
+  }
 }
 
 onMounted(() => {
